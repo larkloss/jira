@@ -22,10 +22,10 @@ export const useMount = (callback:() => void) => {
     }, [])
 }
 export const useDebounce = <V>(value:V, delay?:number) => {
-    const [debounceValue, setdebounceValue] = useState(value)
+    const [debounceValue, setDebounceValue] = useState(value)
     useEffect(() => {
         //每次value变化完设置一个
-        const timeout = setTimeout(() => setdebounceValue(value),delay)
+        const timeout = setTimeout(() => setDebounceValue(value),delay)
         //每次在上一个useEffect处理完后在使用
         return () => clearTimeout(timeout)
     }, [value, delay])

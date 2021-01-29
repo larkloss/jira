@@ -1,7 +1,6 @@
 import { useAuth } from "context/auth-context";
 import React, {FormEvent} from "react";
 
-const apiUrl = process.env.REACT_APP_API_URL
 export const RegisterScreen = () => {
     const { register, user } = useAuth();
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -11,10 +10,6 @@ export const RegisterScreen = () => {
         register({username, password})
     }
     return (<form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username"> 用户名</label>
-                <input type="text" id={"username"}>密码</input>
-            </div>
             <div>
                 <label htmlFor="password">密码</label>
                 <input type="password" id={"password"}/>
