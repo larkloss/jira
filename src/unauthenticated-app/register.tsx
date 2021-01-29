@@ -11,8 +11,12 @@ export const RegisterScreen = () => {
     }
     return (<form onSubmit={handleSubmit}>
             <div>
+                <label htmlFor="username">用户名</label>
+                <input type="text" id={"password"}/>
+            </div>
+            <div>
                 <label htmlFor="password">密码</label>
-                <input type="password" id={"password"}/>
+                <input type="password" id={"password"} />
             </div>
             <button type={"submit"}>注册</button>
         </form>
