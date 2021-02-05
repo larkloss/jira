@@ -3,6 +3,7 @@ import {SearchPanel} from "./search-panel";
 import React, {useEffect, useState} from "react";
 import {cleanObject, useDebounce, useMount} from "../../utils";
 import {useHttp} from "../../utils/http";
+import styled from "@emotion/styled";
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -28,3 +29,8 @@ export const ProjectListScreen = () => {
         <List users={users} list={ list}/>
         </div>
 }
+
+const Container = styled.div`
+    padding:3.2rem
+  `
+
