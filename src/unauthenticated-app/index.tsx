@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {RegisterScreen} from "unauthenticated-app/register";
 import {LoginScreen} from "unauthenticated-app/login";
-import {Card, Divider, Button} from 'antd'
+import {Card, Divider, Button, Typography} from 'antd'
 import styled from '@emotion/styled'
 import logo from 'assets/logo.svg'
 import left from 'assets/left.svg'
@@ -9,6 +9,7 @@ import right from 'assets/right.svg'
 
 export const UnauthenticatedApp = () => {
     const [isRegister, setIsRegister] = useState(false)
+    const [error, setError] = useState<Error | null>(null)
     return <div style={{display:'flex', justifyContent:'center'}}>
         <Container>
             <Header/>
@@ -16,12 +17,13 @@ export const UnauthenticatedApp = () => {
         <ShadowCard>
             <Title>
                 {isRegister ? '请注册':'请登录'}
+                {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text> : null}
             </Title>
         {
-            isRegister ? <RegisterScreen/> : <LoginScreen/>
+            isRegister ? <RegisterScreen onError={setError}/> : <LoginScreen onError={setError}/>
         }
         <Divider/>
-            <a onClick={() => setIsRegister(!isRegister)}>切换到{isRegister ? '登录' : '没有帐户，这里注册'}</a>
+            <Button type = {"link"} onClick={() => setIsRegister(!isRegister)}>切换到{isRegister ? '登录' : '没有帐户，这里注册'}</Button>
         </ShadowCard>
         </Container>
     </div>

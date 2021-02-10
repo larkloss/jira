@@ -4,7 +4,7 @@ import { useAuth } from "context/auth-context";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
-import {Dropdown, Menu} from "antd";
+import {Button, Dropdown, Menu} from "antd";
 /**
  * grid 和 flex 各自的应用场景
  * 1. 要考虑，是一维布局 还是 二维布局
@@ -31,13 +31,15 @@ export const AuthenticatedApp = () => {
                     <Dropdown overlay={
                         <Menu>
                         <Menu.Item key={'logout'}>
-                            <a onClick={logout}>登出</a>
+                            <Button onClick={logout} type={"link"}>
+                                登出
+                            </Button>
                         </Menu.Item>
                         </Menu>
                     }>
-                        <a onClick={(e) => e.preventDefault()}>
+                        <Button type={"link"} onClick={(e) => e.preventDefault()}>
                             Hi, {user?.name}
-                        </a>
+                        </Button>
                     </Dropdown>
                 </HeaderRight>
             </Header>

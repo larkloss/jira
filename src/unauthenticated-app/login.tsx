@@ -1,11 +1,19 @@
 import React, {FormEvent} from "react";
 import {useAuth} from "context/auth-context";
 import {Form, Button, Input} from 'antd'
+import {LongButton} from "./index";
+import {useAsync} from "../utils/use-async";
+import {throws} from "assert";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({onError}:{onError : (error :Error) => void}) => {
     const {login, user} = useAuth();
-    const handleSubmit = (values: {username: string, password:string}) => {
-        login(values)
+    const {run, isLoading} = useAsync(undefined, {throwOnError: true});
+    const handleSubmit = async (values: {username: string, password:string}) => {
+        try {
+            await run(login(values))
+        } catch (e) {
+            onError(e)
+        }
     }
     return (<Form onFinish={handleSubmit}>
             <Form.Item name={'username'} rules={[{required:true, message:'请输入用户名'}]}>
@@ -15,7 +23,7 @@ export const LoginScreen = () => {
                 <Input placeholder="password" type="password" id={"password"}/>
             </Form.Item>
             <Form.Item>
-                <Button htmlType={'submit'} type={"primary"}>登录</Button>
+                <LongButton loading={isLoading} htmlType={'submit'} type={"primary"}>登录</LongButton>
             </Form.Item>
         </Form>
     )
