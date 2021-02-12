@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import React from "react";
+import { Button, Spin, Typography } from "antd";
 
 export const Row = styled.div<{
     gap?: number | boolean;
@@ -19,4 +21,27 @@ export const Row = styled.div<{
                     ? "2rem"
                     : undefined};
   }
+`;
+
+const FullPage = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FullPageLoading = () => (
+    <FullPage>
+        <Spin size={"large"} />
+    </FullPage>
+);
+
+export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
+    <FullPage>
+        <Typography.Text type={"danger"}>{error?.message}</Typography.Text>
+    </FullPage>
+);
+
+export const ButtonNoPadding = styled(Button)`
+  padding: 0;
 `;
