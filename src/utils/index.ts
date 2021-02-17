@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export const isFalsy = (value:any) => (value === 0 ? false : !value);
 export const isVoid = (value: unknown) => value === undefined || value === null || value === "";
@@ -33,7 +33,9 @@ export const useDebounce = <V>(value:V, delay?:number) => {
 }
 
 export const useDocumentTitle = (title: string, keepOnUnmount:boolean =  true) => {
-    const oldTitle = document.title
+    const oldTitle = useRef(document.title).current
+    //页面加载时候 旧title
+    //加载后 新title
     useEffect(() => {
         document.title = title
     }, [title])
@@ -44,5 +46,5 @@ export const useDocumentTitle = (title: string, keepOnUnmount:boolean =  true) =
                 document.title = oldTitle
             }
         }
-    }, [])
+    }, [keepOnUnmount, oldTitle])
 }
