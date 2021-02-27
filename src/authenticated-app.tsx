@@ -5,9 +5,9 @@ import { useAuth } from "context/auth-context";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
-import {Button, Dropdown, Menu} from "antd";
-import {Route, Routes, Navigate} from 'react-router'
-import {BrowserRouter as Router} from 'react-router-dom';
+import { Button, Dropdown, Menu } from "antd";
+import { Route, Routes, Navigate } from 'react-router'
+import { BrowserRouter as Router } from 'react-router-dom';
 import { resetRoute } from "utils";
 
 /**
