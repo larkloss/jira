@@ -20,7 +20,7 @@ export const useEditProject = () => {
     const {run, ...asyncResult} = useAsync()
     const client = useHttp()
     const mutate = (params: Partial<Project>) => {
-        return run(client(`project/${params.id}`, {
+        return run(client(`projects/${params.id}`, {
             data: params,
             method: "PATCH"
         }))
