@@ -3,7 +3,7 @@ import { SearchPanel } from "screens/project-list/search-panel";
 import { List } from "screens/project-list/list";
 import {useDebounce, useDocumentTitle} from "../../utils";
 import styled from "@emotion/styled";
-import { Typography } from "antd";
+import {Button, Typography} from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
 import {Helmet} from "react-helmet";
@@ -15,7 +15,7 @@ import {useProjectsSearchParams} from "./util";
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 export const ProjectListScreen = () => {
     const [param, setParam] = useProjectsSearchParams()
-    const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
+    const { isLoading, error, data: list , retry} = useProjects(useDebounce(param, 200));
     const { data: users } = useUsers();
 
     useUrlQueryParam([''])
@@ -26,7 +26,7 @@ export const ProjectListScreen = () => {
             {error ? (
                 <Typography.Text type={"danger"}>{error.message}</Typography.Text>
             ) : null}
-            <List loading={isLoading} users={users || []} dataSource={list || []} />
+            <List refresh={retry} loading={isLoading} users={users || []} dataSource={list || []} />
         </Container>
     );
 };
