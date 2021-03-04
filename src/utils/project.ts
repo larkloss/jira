@@ -11,7 +11,6 @@ export const useProjects = (param?: Partial<Project>) => {
         () => client("projects", { data: cleanObject(param || {}) }), [param, client]
     )
 
-
     useEffect(() => {
         run(fetchProjects(), {
             retry:fetchProjects
