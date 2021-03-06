@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react";
+import {useCallback, useReducer, useState} from "react";
 import {useMountedRef} from "./index";
 
 
@@ -17,24 +17,29 @@ const defaultInitialState: State<null> = {
 const defaultConfig =  {
     throwOnError:false
 }
+
+const useSafeDispatch = <T>(dispatch: (...args: T[]) => void) => {
+    const mountedRef = useMountedRef()
+    return useCallback((...args: T[]) => (mountedRef.current ? dispatch(...args) : void 0), [dispatch, mountedRef])
+}
 export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  defaultConfig) => {
     const config = {...defaultConfig, initialConfig}
-    const [state, setState] = useState<State<D>>({
+    const [state, dispatch] = useReducer((state:State<D>, action:Partial<State<D>>) => ({...state, ...action}),{
         ...defaultInitialState,
         ...initialState
     })
-    const mountedRef = useMountedRef()
+    const safeDispatch = useSafeDispatch(dispatch)
     const [retry, setRetry] = useState(() => () => {
 
     })
 
-    const setData = useCallback((data: D) => setState({
+    const setData = useCallback((data: D) => safeDispatch({
          data,
         stat: 'success',
         error: null
     }), [])
 
-    const setError = useCallback((error:Error) => setState({
+    const setError = useCallback((error:Error) => safeDispatch({
         error,
         stat: 'error',
         data: null
@@ -50,11 +55,9 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  def
                     run(runConfig?.retry(), runConfig)
                 }
             })
-            setState(prevState => ({...prevState, stat:'loading'}))
+            safeDispatch({stat:'loading'})
             return promise.then(data => {
-                if (mountedRef.current) {
-                    setData(data)
-                }
+                setData(data)
                 return data
             }).catch(error => {
                 // catch会消化异常，如果不抛出，外面收不到
@@ -63,7 +66,7 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  def
                 return error;
             })
         }
-    ), [config.throwOnError, mountedRef, setData, setError])
+    ), [config.throwOnError, setData, setError])
 
     return {
         isIdle:state.stat === 'idle',
