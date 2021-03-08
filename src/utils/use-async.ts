@@ -22,6 +22,7 @@ const useSafeDispatch = <T>(dispatch: (...args: T[]) => void) => {
     const mountedRef = useMountedRef()
     return useCallback((...args: T[]) => (mountedRef.current ? dispatch(...args) : void 0), [dispatch, mountedRef])
 }
+
 export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  defaultConfig) => {
     const config = {...defaultConfig, initialConfig}
     const [state, dispatch] = useReducer((state:State<D>, action:Partial<State<D>>) => ({...state, ...action}),{

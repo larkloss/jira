@@ -1,6 +1,5 @@
 # 简单的企业级Jira后台事务管理系统
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## 一些在开发工作中遇到的问题的解法应用
 
@@ -18,7 +17,5 @@ useDebounce 返回 any 类型不够精准？
  
 异步请求代码繁琐处理 error 和 loading 复杂？
 - 用 useAsync 自定义Hook抽象代码
-
-
 
 
