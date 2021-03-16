@@ -10,14 +10,14 @@ import {Helmet} from "react-helmet";
 import {useUrlQueryParam} from "../../utils/url";
 import {useSearchParams} from "react-router-dom";
 import {useProjectModal, useProjectsSearchParams} from "./util";
-import {ButtonNoPadding, Row} from "../../components/lib";
+import {ButtonNoPadding, ErrorBox, Row} from "../../components/lib";
 
 // 使用 JS ，大部分的错误都是在 runtime(运行时) 的时候发现的
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 export const ProjectListScreen = () => {
     const [param, setParam] = useProjectsSearchParams()
     const {open} = useProjectModal()
-    const { isLoading, error, data: list , retry} = useProjects(useDebounce(param, 200));
+    const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
     const { data: users } = useUsers();
 
     useUrlQueryParam([''])
@@ -28,10 +28,8 @@ export const ProjectListScreen = () => {
                 <ButtonNoPadding onClick={open} type={"link"}>创建项目</ButtonNoPadding>
             </Row>
             <SearchPanel users={users || []} param={param} setParam={setParam} />
-            {error ? (
-                <Typography.Text type={"danger"}>{error.message}</Typography.Text>
-            ) : null}
-            <List refresh={retry} loading={isLoading} users={users || []} dataSource={list || []} />
+            <ErrorBox error={error}/>
+            <List  loading={isLoading} users={users || []} dataSource={list || []} />
         </Container>
     );
 };
