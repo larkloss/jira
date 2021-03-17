@@ -15,8 +15,7 @@ export const useEditProject = () => {
     const client = useHttp()
     const queryClient = useQueryClient()
     return useMutation((params: Partial<Project>) => client(`projects/'${params.id}`, {
-        method: 'PATCH',
-        data:params,
+        method: 'PATCH',  data:params,
     }),{
             onSuccess: () => queryClient.invalidateQueries('projects')
         }
@@ -27,8 +26,8 @@ export const useAddProject = () => {
     const client = useHttp()
     const queryClient = useQueryClient()
     return useMutation((params: Partial<Project>) => client(`projects`, {
-            method: 'POST',
             data:params,
+            method: 'POST',
         }),{
             onSuccess: () => queryClient.invalidateQueries('projects')
         }

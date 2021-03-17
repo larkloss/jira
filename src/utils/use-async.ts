@@ -23,7 +23,7 @@ const useSafeDispatch = <T>(dispatch: (...args: T[]) => void) => {
     return useCallback((...args: T[]) => (mountedRef.current ? dispatch(...args) : void 0), [dispatch, mountedRef])
 }
 export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  defaultConfig) => {
-    const config = {...defaultConfig, initialConfig}
+    const config = {...defaultConfig, ...initialConfig}
     const [state, dispatch] = useReducer((state:State<D>, action:Partial<State<D>>) => ({...state, ...action}),{
         ...defaultInitialState,
         ...initialState
@@ -37,13 +37,13 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof  def
          data,
         stat: 'success',
         error: null
-    }), [])
+    }), [safeDispatch])
 
     const setError = useCallback((error:Error) => safeDispatch({
         error,
         stat: 'error',
         data: null
-    }), [])
+    }), [safeDispatch])
     //run 用来触发异步请求
     const run = useCallback((
         (promise: Promise<D>, runConfig?: {retry: () => Promise<D>}) => {
