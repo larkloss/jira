@@ -11,7 +11,6 @@ export const useProjects = (param?: Partial<Project>) => {
 };
 
 export const useEditProject = () => {
-    const {run, ...asyncResult} = useAsync()
     const client = useHttp()
     const queryClient = useQueryClient()
     return useMutation((params: Partial<Project>) => client(`projects/'${params.id}`, {
