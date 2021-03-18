@@ -14,7 +14,9 @@ export const useProjectsSearchParams = () => {
         setParam,
     ] as const;
 };
-
+export const useProjectsQueryKey = () => {
+    const [params] = useProjectsSearchParams()
+    return ['projects', params]}
 //全局状态管理器
 export const useProjectModal = () => {
     const [{projectCreate}, setProjectCreate] = useUrlQueryParam([
