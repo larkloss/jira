@@ -1,4 +1,4 @@
-import {User} from "./screens/project-list/search-panel";
+import {User} from "./types/user";
 //等供应商接入auth
 const localStorageKey = '__auth_provider_token__'
 

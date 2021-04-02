@@ -1,22 +1,14 @@
 import React from "react";
-import { User } from "screens/project-list/search-panel";
-import {Dropdown,Menu, Table, Modal} from "antd";
+import {Dropdown, Menu, Modal, Table} from "antd";
 import dayjs from "dayjs";
-import { TableProps } from "antd/es/table";
+import {TableProps} from "antd/es/table";
 import {Link} from "react-router-dom";
 import {useDeleteProject, useEditProject} from "../../utils/project";
 import {Pin} from "../../components/pin";
 import {ButtonNoPadding} from "../../components/lib";
 import {useProjectModal, useProjectsQueryKey} from "./util";
-
-export interface Project {
-    id: number;
-    name: string;
-    personId: number;
-    pin: boolean;
-    organization: string;
-    created: number;
-}
+import {Project} from "../../types/project";
+import {User} from "../../types/user";
 
 interface ListProps extends TableProps<Project> {
     users: User[];
