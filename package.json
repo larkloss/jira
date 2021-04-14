@@ -37,7 +37,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run bulid",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build -r git@github.com:larkloss/jira.git -b master"
   },
   "eslintConfig": {
