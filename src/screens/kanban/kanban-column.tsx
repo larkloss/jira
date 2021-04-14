@@ -40,23 +40,25 @@ const TaskCard = ({ task }: { task: Task }) => {
     );
 };
 
-export const KanbanColumn = React.forwardRef<HTMLDivElement, { kanban: Kanban }>(({ kanban, ...props }, ref) => {
+export const KanbanColumn = React.forwardRef<
+    HTMLDivElement,
+    { kanban: Kanban }
+    >(({ kanban, ...props }, ref) => {
     const { data: allTasks } = useTasks(useTasksSearchParams());
-    const tasks = allTasks?.filter(task => task.kanbanId === kanban.id);
-    const {startEdit} = useTasksModal()
+    const tasks = allTasks?.filter((task) => task.kanbanId === kanban.id);
     return (
         <Container {...props} ref={ref}>
-            <Row>
+            <Row between={true}>
                 <h3>{kanban.name}</h3>
-                <More kanban={kanban}/>
+                <More kanban={kanban} key={kanban.id} />
             </Row>
-            <TaskContainer>
+            <TasksContainer>
                 <Drop
                     type={"ROW"}
                     direction={"vertical"}
                     droppableId={String(kanban.id)}
                 >
-                    <DropChild style={{ minHeight: "1rem" }}>
+                    <DropChild>
                         {tasks?.map((task, taskIndex) => (
                             <Drag
                                 key={task.id}
@@ -70,8 +72,8 @@ export const KanbanColumn = React.forwardRef<HTMLDivElement, { kanban: Kanban }>
                         ))}
                     </DropChild>
                 </Drop>
-            <CreateTask kanbanId={kanban.id}/>
-            </TaskContainer>
+                <CreateTask kanbanId={kanban.id} />
+            </TasksContainer>
         </Container>
     );
 });
@@ -116,10 +118,11 @@ export const Container = styled.div`
   margin-right: 1.5rem;
   `
 
-export const TaskContainer = styled.div `
+const TasksContainer = styled.div`
   overflow: scroll;
   flex: 1;
-  ::-webkit-scrollbar{
+
+  ::-webkit-scrollbar {
     display: none;
   }
-  `
+`;
