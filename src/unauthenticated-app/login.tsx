@@ -1,12 +1,11 @@
-import React, {FormEvent} from "react";
+import React from "react";
 import {useAuth} from "context/auth-context";
-import {Form, Button, Input} from 'antd'
+import {Form, Input} from 'antd'
 import {LongButton} from "./index";
 import {useAsync} from "../utils/use-async";
-import {throws} from "assert";
 
 export const LoginScreen = ({onError}:{onError : (error :Error) => void}) => {
-    const {login, user} = useAuth();
+    const {login} = useAuth();
     const {run, isLoading} = useAsync(undefined, {throwOnError: true});
     const handleSubmit = async (values: {username: string, password:string}) => {
         try {

@@ -1,12 +1,12 @@
-import React, {FormEvent} from "react";
+import React from "react";
 import {useAuth} from "context/auth-context";
-import {Form, Button, Input} from 'antd'
+import {Form, Input} from 'antd'
 import {LongButton} from "./index";
 import {useAsync} from "../utils/use-async";
 
 export const RegisterScreen = ({onError}:{onError : (error :Error) => void}) => {
-    const {register, user} = useAuth();
-    const {run, isLoading} = useAsync(undefined, {throwOnError: true});
+    const {register} = useAuth();
+    const {run} = useAsync(undefined, {throwOnError: true});
     const handleSubmit = async ({cpassword, ...values}: {username: string, password:string, cpassword: string}) => {
         if (cpassword !== values.password) {
             onError(new Error('请确认两次输入的密码相同'))

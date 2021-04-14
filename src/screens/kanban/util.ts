@@ -1,5 +1,5 @@
 import {useLocation} from "react-router";
-import React, {useCallback, useMemo} from "react"
+import {useCallback, useMemo} from "react"
 import {useProject} from "../../utils/project";
 import {useUrlQueryParam} from "../../utils/url";
 import {useTask} from "../../utils/task";

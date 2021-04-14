@@ -1,7 +1,6 @@
 import {useSetUrlSearchParam, useUrlQueryParam} from "utils/url";
-import {useMemo, useState} from "react";
+import {useMemo} from "react";
 import {useProject} from "../../utils/project";
-import {useSearchParams} from "react-router-dom";
 
 // 项目列表搜索的参数
 export const useProjectsSearchParams = () => {
@@ -41,7 +40,3 @@ export const useProjectModal = () => {
     }
 }
 
-const useTest = () => {
-    const {open: openModal} = useProjectModal()
-    const [a, setA] = useState()
-}

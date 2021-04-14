@@ -1,12 +1,11 @@
 import React, {useState} from "react"
 import {RegisterScreen} from "unauthenticated-app/register";
 import {LoginScreen} from "unauthenticated-app/login";
-import {Card, Divider, Button, Typography} from 'antd'
+import {Card, Divider, Button} from 'antd'
 import styled from '@emotion/styled'
 import logo from 'assets/logo.svg'
 import left from 'assets/left.svg'
 import right from 'assets/right.svg'
-import {Helmet} from 'react-helmet'
 import {useDocumentTitle} from "../utils";
 import {ErrorBox} from "../components/lib";
 

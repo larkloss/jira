@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { ProjectListScreen } from "screens/project-list";
 import {ProjectScreen} from "./screens/project";
 import { useAuth } from "context/auth-context";
@@ -26,7 +26,6 @@ import {UserPopover} from "./components/user-popover";
  */
 
 export const AuthenticatedApp = () => {
-    const [projectModalOpen, setProjectModalOpen] = useState(false)
 
     return (
         <Container>

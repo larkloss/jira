@@ -1,5 +1,5 @@
 import React from "react";
-import {Popover, List, Typography, Divider, Button} from "antd";
+import {Popover, List, Typography, Divider} from "antd";
 import {useProjects} from "../utils/project";
 import styled from "@emotion/styled";
 import {ButtonNoPadding} from "./lib";
