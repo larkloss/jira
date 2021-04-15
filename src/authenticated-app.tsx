@@ -26,7 +26,6 @@ import {UserPopover} from "./components/user-popover";
  */
 
 export const AuthenticatedApp = () => {
-
     return (
         <Container>
             <Router>
