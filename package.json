@@ -38,7 +38,7 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r git@github.com:larkloss/larkloss.github.io.git -b main"
+    "deploy": "gh-pages -d build -r git@github.com:dingz4/dingz4.github.io.git -b main"
   },
   "eslintConfig": {
     "extends": [

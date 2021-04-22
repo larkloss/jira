@@ -7,7 +7,6 @@ import {ButtonNoPadding, Row} from "components/lib";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import { Button, Dropdown, Menu } from "antd";
 import { Route, Routes, Navigate } from 'react-router'
-import { BrowserRouter as Router } from 'react-router-dom';
 import { resetRoute } from "utils";
 import {ProjectModal} from "./screens/project-list/project-modal";
 import {ProjectPopover} from "./components/project-popover";
@@ -28,7 +27,6 @@ import {UserPopover} from "./components/user-popover";
 export const AuthenticatedApp = () => {
     return (
         <Container>
-            <Router>
             <PageHeader />
             <Main>
                     <Routes>
@@ -38,7 +36,6 @@ export const AuthenticatedApp = () => {
                     </Routes>
             </Main>
             <ProjectModal/>
-        </Router>
         </Container>
     );
 };

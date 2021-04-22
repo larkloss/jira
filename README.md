@@ -1,6 +1,5 @@
 # 简单的企业级Jira后台事务管理系统
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## 一些在开发工作中遇到的问题的解法应用
 
